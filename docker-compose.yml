@@ -1,0 +1,61 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ms_product
+    ports:
+      - "3307:3306"
+    networks:
+      - my-network
+  ms-product:
+    image: ms-product:latest
+    ports:
+      - "9090:9090"
+    environment:
+      PORT: 9090
+    networks:
+      - my-network
+  ms-fraud:
+    image: ms-fraud:latest
+    ports:
+      - "8084:8084"
+    environment:
+      PORT: 8084
+    networks:
+      - my-network
+  ms-identity:
+    image: ms-identity:latest
+    ports:
+      - "8085:8085"
+    environment:
+      PORT: 8085
+    networks:
+      - my-network
+  ms-payment:
+    image: ms-payment:latest
+    ports:
+      - "8082:8082"
+    environment:
+      PORT: 8082
+    networks:
+      - my-network
+  ms-translate:
+    image: ms-translate:latest
+    ports:
+      - "8081:8081"
+    environment:
+      PORT: 8081
+    networks:
+      - my-network
+  ms-client:
+    image: ms-client:latest
+    ports:
+      - "8083:8083"
+    environment:
+      PORT: 8083
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: "bridge"
